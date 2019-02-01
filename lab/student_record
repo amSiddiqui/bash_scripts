@@ -1,0 +1,10 @@
+#!/bin/bash
+echo 'Enter Student details'
+read -p 'Name: ' name
+read -p 'Phone: ' phone
+read -p 'registration number: ' reg
+echo '+------------------------+'
+echo "Name: $name"
+echo "Phone: $phone"
+echo "Registration Number: $reg"
+echo "Manipal University Jaipur"

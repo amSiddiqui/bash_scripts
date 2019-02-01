@@ -1,0 +1,8 @@
+#!/bin/bash
+read -p "Enter a number: " num
+fact=1
+for x in `seq 2 $num`;
+do
+	fact=$(($fact*$x))
+done
+echo $fact

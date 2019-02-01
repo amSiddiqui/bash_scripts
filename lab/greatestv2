@@ -1,0 +1,6 @@
+#!/bin/bash
+if ((($#>=2)) && (($#<=3))) ; then
+	echo $(echo "$1 $2 $3" | tr " " "\n" | sort -gr | cut -d$'\n' -f1)
+else
+	echo "Usage: ./greatest NUMBER(S)"
+fi	

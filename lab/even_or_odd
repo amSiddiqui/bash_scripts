@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -eq 1 ] ; then 
+	if (($1%2 == 0));  then 
+		echo "An even number"
+	else
+		echo "An odd number"
+	fi
+else 
+	echo "Usage: ./even_or_odd NUMBER"
+fi

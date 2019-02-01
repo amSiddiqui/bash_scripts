@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo "Basic Calculator"
+if [ $# -eq 1 ] ; then
+	if [ $1 = "-h" ] ; then
+		echo "Usage: OPEREND<space>OPERATOR<space>OPEREND"
+		echo "Example: 5 + 8"
+	fi
+elif [ $# -eq 0 ] ; then
+echo "Press Ctrl+Z to close the calc"
+while :
+do
+	read a op b
+	case $op in
+		"+")
+			echo $(($a+$b))
+			;;
+		"-")
+			echo $(($a-$b))
+			;;
+		"*")
+			echo $(($a*$b))
+			;;
+		"/")
+			echo $(($a/$b))
+			;;
+		*)
+			echo "$op is not identified as an operation"
+			;;
+	esac
+done
+else
+	echo "Wrong Usage of commad"
+	echo "Type ./basic_calc -h for help"
+fi

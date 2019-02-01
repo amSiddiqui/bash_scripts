@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ $# -eq 1 ] ; then
+	case $1 in
+		[0-9])
+			echo "Single digit"
+			;;
+		[0-9][0-9])
+			echo "Double digit"
+			;;
+		[0-9][0-9][0-9])
+			echo "Triple digit"
+			;;
+		[0-9]* )
+			echo "Many digits"
+			;;
+		*)
+			echo "Wrong Input"
+			;;
+	esac
+else
+	echo "Usage: ./numberOfdigit NUMBER"
+fi

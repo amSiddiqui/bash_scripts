@@ -1,0 +1,2 @@
+Name='aamir'
+echo $Name

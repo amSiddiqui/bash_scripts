@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "This is the first arg $1"
+echo "This si the second arg $2"
+echo "This is the command $0"
