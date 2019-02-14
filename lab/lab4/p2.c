@@ -8,7 +8,7 @@
 // 1 50 412
 // 1: number of lines
 // 50: number of words
-// 412: size of file in bytes
+// 412: byte count
 
 #include<stdio.h>
 #include<unistd.h>
