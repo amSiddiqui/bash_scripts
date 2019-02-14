@@ -11,7 +11,7 @@ int main()
     pid_t id = fork(); 
     
     if (id == 0) {
-        // Sleep the child process for 50
+        // Sleep the child process for 20
         sleep(20); 
         // This line will be printed out after 20 seconds
         printf("in child process\n"); 
