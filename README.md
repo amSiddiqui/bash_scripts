@@ -14,5 +14,9 @@ A repository of bash scipts that I wrote while learing Shell scripting.
  * Programs of lab 5 are added in lab/lab5 folder
  * p1: FCFS algorithm, p2: SJF algorithm, p3: Priority algorithm
 
+## Update 01/03/2019
+ * Added Program 3 of lab 6 that can be found it lab/lab6 (I have used gets() which gives a warning. Please ignore it.)
+ * Program 1 and 2 will be available soon. 
+
 Feel free to clone or download the lab work.
 You can add your scripts too. Just make a seperate Folder for your scripts in the root directory.
