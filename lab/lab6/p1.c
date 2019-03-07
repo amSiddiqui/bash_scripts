@@ -16,9 +16,6 @@
 #define PIPEIN 0
 #define PIPEOUT 1
 
-
-void filewrite (int, int);
-
 int main(int argc, char const *argv[])
 {
     // Input file name from command line
