@@ -37,41 +37,47 @@ int main(int argc, char const *argv[])
         // Child process
         // Open file as write
         int fd = open(filename, O_APPEND | O_WRONLY);
-        char detail[50];
-        int no_of_student;
-        char dum[3];
-        printf("Enter the number of students: ");scanf("%d", &no_of_student);
-        gets(dum);
-        for(int i=0; i<no_of_student; i++){
-            printf("Details of student %d\n", i+1);
-            printf("Name: ");
-            gets(detail);
-            // Append spaces after detail
-            appendSpaces(detail, NAMESIZE-strlen(detail));
-            // Write in file
-            fileAppend(fd, detail);
-            printf("Age: ");
-            gets(detail);
-            // Append spaces after detail
-            appendSpaces(detail, AGESIZE-strlen(detail));
-            fileAppend(fd, detail);
-            printf("Branch: ");
-            gets(detail);
-            // Append spaces after detail
-            appendSpaces(detail, BRANCHSIZE-strlen(detail));
-            fileAppend(fd, detail);
-            printf("City: ");
-            gets(detail);
-            // Append spaces after detail
-            appendSpaces(detail, CITYSIZE-strlen(detail));
-            fileAppend(fd, detail);
-            printf("Gender: ");
-            gets(detail);
-            // Append \r \n
-            strcat(detail, "\r\n");
-            fileAppend(fd, detail);
+        if ( fd < 0){
+            char detail[50];
+            int no_of_student;
+            char dum[3];
+            printf("Enter the number of students: ");scanf("%d", &no_of_student);
+            gets(dum);
+            for(int i=0; i<no_of_student; i++){
+                printf("Details of student %d\n", i+1);
+                printf("Name: ");
+                gets(detail);
+                // Append spaces after detail
+                appendSpaces(detail, NAMESIZE-strlen(detail));
+                // Write in file
+                fileAppend(fd, detail);
+                printf("Age: ");
+                gets(detail);
+                // Append spaces after detail
+                appendSpaces(detail, AGESIZE-strlen(detail));
+                fileAppend(fd, detail);
+                printf("Branch: ");
+                gets(detail);
+                // Append spaces after detail
+                appendSpaces(detail, BRANCHSIZE-strlen(detail));
+                fileAppend(fd, detail);
+                printf("City: ");
+                gets(detail);
+                // Append spaces after detail
+                appendSpaces(detail, CITYSIZE-strlen(detail));
+                fileAppend(fd, detail);
+                printf("Gender: ");
+                gets(detail);
+                // Append \r \n
+                strcat(detail, "\r\n");
+                fileAppend(fd, detail);
+            }
+            close(fd);
         }
-        close(fd);
+        else {
+            fprintf(stderr, "File does not exists\n");
+            return 1;
+        }
     }
     else{ 
         // Parent Part
@@ -80,16 +86,20 @@ int main(int argc, char const *argv[])
         // Read from the file and print all the names
         int line_length = AGESIZE + BRANCHSIZE + GSIZE + CITYSIZE + 2;
         int fd = open(filename, O_RDONLY);
-        char read_name[20];
-        printf("\nStudents\n");
-        while(read(fd, read_name, NAMESIZE)){
-        read_name[20] = '\0';
-        printf("%s\n", read_name);
-        lseek(fd, line_length, SEEK_CUR);
+        if ( fd < 0){
+            char read_name[20];
+            printf("\nStudents\n");
+            while(read(fd, read_name, NAMESIZE)){
+            read_name[20] = '\0';
+            printf("%s\n", read_name);
+            lseek(fd, line_length, SEEK_CUR);
+            }
+            close(fd);
+            printf("Process completed. File saved\n");
+        }else{
+            fprintf(stderr, "File does not exists\n");
+            return 1;
         }
-        
-        close(fd);
-        printf("Process completed. File saved\n");
     }
     return 0;
 }
