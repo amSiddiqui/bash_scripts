@@ -25,5 +25,9 @@ A repository of bash scipts that I wrote while learing Shell scripting.
  gcc p2.c -lpthread
  ```
 
+## Update 08/03/2019
+ * Added program 1 and 2 in lab 7
+
+
 Feel free to clone or download the lab work.
 You can add your scripts too. Just make a seperate Folder for your scripts in the root directory.
