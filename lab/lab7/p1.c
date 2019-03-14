@@ -81,6 +81,7 @@ void *producer(void *thread_n) {
     }
     pthread_exit(0);
 }
+
  
 void *consumer(void *thread_n) {
     int thread_numb = *(int *)thread_n;
