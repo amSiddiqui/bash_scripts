@@ -44,11 +44,14 @@ int main(int argc, char const *argv[])
 void *run(void* param){
     // Runner function that prints if number is prime.
     int num = atoi(param);
-    if(prime_check(num)){
-        printf("Number is prime.\n");
-    }else{
-        printf("Number is not prime.\n");
+    int i;
+    printf("Prime numbers less than %d are: ", num);
+    for (i = 2; i< num; i++){
+        if(prime_check(i)){
+            printf("%d, ",i);
+        }
     }
+    printf("\n");
     pthread_exit(0);
 }
 
