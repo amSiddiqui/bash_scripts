@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
         // Child process
         // Open file as write
         int fd = open(filename, O_APPEND | O_WRONLY);
-        if ( fd < 0){
+        if ( fd <= 0){
             char detail[50];
             int no_of_student;
             char dum[3];
@@ -86,7 +86,7 @@ int main(int argc, char const *argv[])
         // Read from the file and print all the names
         int line_length = AGESIZE + BRANCHSIZE + GSIZE + CITYSIZE + 2;
         int fd = open(filename, O_RDONLY);
-        if ( fd < 0){
+        if ( fd <= 0){
             char read_name[20];
             printf("\nStudents\n");
             while(read(fd, read_name, NAMESIZE)){
