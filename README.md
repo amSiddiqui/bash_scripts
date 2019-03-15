@@ -28,6 +28,9 @@ A repository of bash scipts that I wrote while learing Shell scripting.
 ## Update 08/03/2019
  * Added program 1 and 2 in lab 7
 
+## Update 15/03/2019
+ * Added program 1 (Banker's algorithm) in lab 8
+
 
 Feel free to clone or download the lab work.
 You can add your scripts too. Just make a seperate Folder for your scripts in the root directory.
