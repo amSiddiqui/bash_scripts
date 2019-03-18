@@ -21,6 +21,7 @@
 
 int fileAppend(int, char*);
 void appendSpaces(char*, int);
+void input_detail(char*, int);
 
 int main(int argc, char const *argv[])
 {
@@ -40,34 +41,34 @@ int main(int argc, char const *argv[])
         if ( fd > 0){
             char detail[50];
             int no_of_student;
-            char dum[3];
             printf("Enter the number of students: ");scanf("%d", &no_of_student);
+            char dum[3]; // Dummy variable to clear buffer
             gets(dum);
             for(int i=0; i<no_of_student; i++){
                 printf("Details of student %d\n", i+1);
                 printf("Name: ");
-                gets(detail);
+                input_detail(detail, NAMESIZE);
                 // Append spaces after detail
                 appendSpaces(detail, NAMESIZE-strlen(detail));
                 // Write in file
                 fileAppend(fd, detail);
                 printf("Age: ");
-                gets(detail);
+                input_detail(detail, AGESIZE);
                 // Append spaces after detail
                 appendSpaces(detail, AGESIZE-strlen(detail));
                 fileAppend(fd, detail);
                 printf("Branch: ");
-                gets(detail);
+                input_detail(detail, BRANCHSIZE);
                 // Append spaces after detail
                 appendSpaces(detail, BRANCHSIZE-strlen(detail));
                 fileAppend(fd, detail);
                 printf("City: ");
-                gets(detail);
+                input_detail(detail, CITYSIZE);
                 // Append spaces after detail
                 appendSpaces(detail, CITYSIZE-strlen(detail));
                 fileAppend(fd, detail);
                 printf("Gender: ");
-                gets(detail);
+                input_detail(detail, GSIZE);
                 // Append \r \n
                 strcat(detail, "\r\n");
                 fileAppend(fd, detail);
@@ -111,5 +112,13 @@ int fileAppend(int fd, char data[]){
 void appendSpaces(char data[], int spaces){
     for(int i=0; i<spaces; i++){
         strcat(data, " ");
+    }
+}
+
+void input_detail(char detail[], int size) {
+    gets(detail);
+    while (strlen(detail) > size) {
+        printf("Size of this field should not exceed %d\nReenter: ", size);
+        gets(detail);
     }
 }
