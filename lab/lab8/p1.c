@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
 {
     printf("BANKER'S ALGORITHM\n");
     // Initializing resources    
-    int available[NUM_RESOURCES] = {0, 0, 2};
+    int available[NUM_RESOURCES] = {3, 3, 2};
     // TODO: Add user input to all the matrices
     int max[NUM_PROCESS][NUM_RESOURCES] = 
     {
@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
         {2, 0, 0},
         {3, 0, 2},
         {2, 1, 1},
-        {3, 3, 2}
+        {0, 0, 2}
     };
     int need[NUM_PROCESS][NUM_RESOURCES] = 
     {
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
         {1, 2, 2},
         {6, 0, 0},
         {0, 1, 1},
-        {1, 0, 1}
+        {4, 3, 1}
     };
     int completed[NUM_PROCESS] = {0, 0, 0, 0};
     // TODO: Extract the deadlock check to a function
