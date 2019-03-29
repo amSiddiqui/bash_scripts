@@ -41,7 +41,8 @@ int main(int argc, char const *argv[])
     };
     int completed[NUM_PROCESS] = {0, 0, 0, 0};
     // TODO: Extract the deadlock check to a function
-    int deadlock = 0, i;
+    int deadlock = 0, i, count =0 ;
+    int sequence[NUM_PROCESS] = {0, 0, 0, 0};
     while (!all_completed(completed) && !deadlock) {
         // It will be zero if atleast one process gets allocated
         deadlock = 1;
@@ -50,6 +51,7 @@ int main(int argc, char const *argv[])
                 deadlock = 0;
                 use_resource(available, allocation[i]);
                 completed[i] = 1;
+                sequence[count++] = i;
             }
         }
     }
@@ -64,7 +66,12 @@ int main(int argc, char const *argv[])
         }
         printf("\n");
     }
-
+    printf("Safe Sequence\n");
+    for( i = 0; i < NUM_PROCESS; i++)
+    {
+        printf("%d, ", sequence[i]);
+    }
+    printf("\n");    
     return 0;
 }
 
