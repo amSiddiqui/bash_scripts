@@ -69,7 +69,7 @@ int main(int argc, char const *argv[])
     printf("Safe Sequence\n");
     for( i = 0; i < NUM_PROCESS; i++)
     {
-        printf("%d, ", sequence[i]);
+        printf("P%d, ", sequence[i]);
     }
     printf("\n");    
     return 0;
