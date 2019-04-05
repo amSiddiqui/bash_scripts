@@ -31,15 +31,15 @@ int main(int argc, char const *argv[])
     int idr[READER];
     int idw[WRITER];
     int i;
-    for(i = 0; i < READER; i++)
-    {
-        idr[i] = i;
-        pthread_create(&thread[0], NULL, reader, idr+i);
-    }
     for(i = 0; i < WRITER; i++)
     {
         idw[i] = i;
         pthread_create(&thread[1], NULL, writer, idw+i);
+    }
+    for(i = 0; i < READER; i++)
+    {
+        idr[i] = i;
+        pthread_create(&thread[0], NULL, reader, idr+i);
     }
     for(i = 0; i < WRITER; i++)
     {
@@ -62,11 +62,11 @@ void *writer(void *param) {
         sem_wait(&rw_mutex);
         fd = open(filename, O_WRONLY | O_TRUNC);
         printf("Writer %d is writing\n", id);
+        sleep(1);
         // Writing is performed
         int len = sprintf(message, "hello %d\n", count++);
         write(fd, message, len);
         close(fd);
-        sleep(3);
         sem_post(&rw_mutex);
     }while(1);
     
@@ -88,8 +88,8 @@ void *reader(void *param) {
         fd = open(filename, O_RDONLY);
         read(fd, message, 6);
         printf("Reader %d read %s\n", id, message);
-        close(fd);
         sleep(1);
+        close(fd);
         sem_wait(&mutex);
         read_count--;
         if (read_count == 0){
