@@ -13,6 +13,7 @@ void print_arr(int *, int);
 void arr_cpy(int *, int *, int);
 void best_fit(int *mem, int *proc, int *p_alloc);
 void first_fit(int *mem, int *proc, int *p_alloc);
+void next_fit(int *mem, int *proc, int *p_alloc);
 void worst_fit(int *mem, int *proc, int *p_alloc);
 void input_proc (int *proc);
 
@@ -35,6 +36,10 @@ int main (int argc, char const *argv[])
     puts("FIRST FIT");
     first_fit (mem_blocks, process, p_alloc);
     puts("Process memory allocations using first fit: ");
+    print_arr(p_alloc, PROCESS);
+    puts("NEXT FIT");
+    next_fit (mem_blocks, process, p_alloc);
+    puts("Process memory allocations using next fit: ");
     print_arr(p_alloc, PROCESS);
     return 0;
 }
@@ -79,10 +84,16 @@ void best_fit(int mem[], int proc[], int p_alloc[]) {
     for(int i = 0; i < PROCESS; i++)
     {
         // Find best fit process loc
-        best = 0;
+        for(size_t k = 0; k < MEM_LOCS; k++)
+        {
+            if (cur_mem[k] >= proc[i]){
+                best = k;
+                break;
+            }
+        }
         for(size_t j = 1; j < MEM_LOCS; j++)
         {
-            if (cur_mem[j] > cur_mem[best] && cur_mem[j] >= proc[i])
+            if (cur_mem[j] < cur_mem[best] && cur_mem[j] >= proc[i])
                 best = j;
         }
         p_alloc[i] = best;
@@ -134,6 +145,30 @@ void first_fit(int mem[], int proc[], int p_alloc[]) {
         }
         p_alloc[i] = first;
         cur_mem[first] = cur_mem[first] - proc[i]; 
+        // printf("Process %d allocated in %d location\n", i+1, first);
+        // puts("New Mem blocks");
+        // print_arr(cur_mem, MEM_LOCS);
+    }
+}
+void next_fit(int mem[], int proc[], int p_alloc[]) {
+    int cur_mem[MEM_LOCS];
+    arr_cpy(mem, cur_mem, MEM_LOCS);
+    // Find smallest mem block just less than ith process
+    int next = 0;
+    for(int i = 0; i < PROCESS; i++)
+    {
+        // Find best fit process loc
+        int j = next;
+        int prev = next == 0 ? MEM_LOCS - 1: next -1 ; 
+        while (j != prev) { 
+            if (cur_mem[j] >= proc[i]) {
+                next = j;
+                break;
+            }
+            j = (j + 1) % MEM_LOCS;
+        }
+        p_alloc[i] = next;
+        cur_mem[next] = cur_mem[next] - proc[i]; 
         // printf("Process %d allocated in %d location\n", i+1, first);
         // puts("New Mem blocks");
         // print_arr(cur_mem, MEM_LOCS);
