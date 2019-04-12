@@ -16,7 +16,7 @@ void first_fit(int *mem, int *proc, int *p_alloc);
 void worst_fit(int *mem, int *proc, int *p_alloc);
 void input_proc (int *proc);
 
-int main(int argc, char const *argv[])
+int main (int argc, char const *argv[])
 {
     seed_mem(mem_blocks);
     int process[PROCESS];
